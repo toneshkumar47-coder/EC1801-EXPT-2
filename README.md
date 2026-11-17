@@ -1,3 +1,4 @@
+<img width="1831" height="957" alt="Screenshot 2026-11-17 140514" src="https://github.com/user-attachments/assets/932a7960-10b8-413e-9e39-d1ecc489ca29" />
 # EXPT 2 - Verification of Logic Gates
 ### SIMULATION AND VERIFICATION OF AND, OR, AND NOT GATES
 ## Aim
@@ -21,9 +22,54 @@ File name	Purpose
 logic_gates.v	Logic-gate RTL
 logic_gates_tb.v	All input combinations and VCD generation
  # Verilog  Program
+// gedit basic_gates.v
+
+module basic_gates (
+    input  wire a,
+    input  wire b,
+    output wire y_and,
+    output wire y_or,
+    output wire y_not
+);
+
+    assign y_and = a & b;   // AND gate
+    assign y_or  = a | b;   // OR gate
+    assign y_not = ~a;      // NOT gate (inverter)
+endmodule
 
 # **Test Bench Program**
+module tb2;
 
+    reg a, b;
+    wire y_and, y_or, y_not;
+
+    // Instantiate the design under test (DUT)
+    basic_gates uut (
+        .a(a),
+        .b(b),
+        .y_and(y_and),
+        .y_or(y_or),
+        .y_not(y_not)
+    );
+
+    initial begin
+        // ---- VCD dump setup ----
+        $dumpfile("basic_gates.vcd");   // name of the VCD file to be generated
+        $dumpvars(0, tb2);               // dump all signals in this testbench hierarchy
+
+        // ---- Apply all 4 input combinations ----
+        $monitor("Time=%0t a=%b b=%b | AND=%b OR=%b NOT(a)=%b", $time, a, b, y_and, y_or, y_not);
+
+        a = 0; b = 0; #10;
+        a = 0; b = 1; #10;
+        a = 1; b = 0; #10;
+        a = 1; b = 1; #10;
+
+        #10 $finish;
+#10;
+    end
+
+endmodule
 
 
 
@@ -79,6 +125,7 @@ The design was compiled and simulated using Synopsys VCS, and the functionality 
 Output
 # OUTPUT
 
+<img width="1831" height="957" alt="Screenshot 2026-11-17 140514" src="https://github.com/user-attachments/assets/9ac3a1ba-4730-4978-98d2-2195d8cac161" />
 
  
 # Viva-Voce Questions
