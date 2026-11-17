@@ -1,4 +1,4 @@
-<img width="1831" height="957" alt="Screenshot 2026-11-17 140514" src="https://github.com/user-attachments/assets/932a7960-10b8-413e-9e39-d1ecc489ca29" />
+
 # EXPT 2 - Verification of Logic Gates
 ### SIMULATION AND VERIFICATION OF AND, OR, AND NOT GATES
 ## Aim
